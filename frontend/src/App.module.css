@@ -1,0 +1,226 @@
+.appWrapper {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #151e1b;
+  overflow-x: hidden;
+  font-family: "Newsreader", "Noto Sans", sans-serif;
+}
+
+.container {
+  /* Replace 'layout-container' with your own styles or remove if not needed */
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.contentContainer {
+  /* Replace 'layout-content-container' with your own styles or remove if not needed */
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  flex: 1;
+}
+
+.heroBackground {
+  display: flex;
+  min-height: 480px;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgBsyZAghQ0xtRMBaMasWcJi3fDzua1JLMRWZ6G3cOUgb2Qj_-twvF_m40ngSKrFq5mkKaC4ctaD8ZUfPtVPXwaPDKWWXkXPFO9I0G7hyYYMlDN1D-swMrW2YCOZ-ZBxSQWpYsnLgZ96j6r16aGdh6BkaR7UiDb25MwxZVAoYWF04A5Fs9ZkAlkRHuPUlrGrpXMInpqzMKCHUWw705yhWqKsjBMNyLIU-x84ANwRRSuT3t9PgAG9q0jcktNqCMsv7WYqFZJbZMoMM");
+  border-radius: 0;
+}
+@media (min-width: 480px) {
+  .heroBackground {
+    gap: 2rem;
+    border-radius: 0.75rem;
+  }
+}
+
+.heroTitle {
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.033em;
+}
+@media (min-width: 480px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+}
+
+.heroSubtitle {
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+@media (min-width: 480px) {
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+}
+
+.ctaButton {
+  margin-top: 1.5rem;
+  height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #c6eadd;
+  color: #151e1b;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  transition: all 0.2s;
+}
+.ctaButton:hover {
+  background-color: #b2d8c7;
+}
+@media (min-width: 480px) {
+  .ctaButton {
+    height: 3rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  max-width: 28rem;
+  margin-top: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.errorMsg {
+  color: #f87171;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.mcqBox {
+  margin-top: 1.5rem;
+  background-color: #1f2d28;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  color: #fff;
+  max-height: 24rem;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.sectionTitle {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.75rem;
+  padding-top: 2rem;
+}
+
+.cardTitle {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  max-width: 720px;
+}
+
+.cardDesc {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 0.75rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #3f5a50;
+  background-color: #1f2d28;
+  padding: 1rem;
+}
+
+.cardIcon {
+  color: #fff;
+}
+
+.cardHeading {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cardText {
+  color: #9fbcb1;
+  font-size: 0.875rem;
+}
+
+.readyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+@media (min-width: 480px) {
+  .readyContainer {
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.readyTitle {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+}
+@media (min-width: 480px) {
+  .readyTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.readyText {
+  color: #fff;
+  font-size: 1rem;
+}

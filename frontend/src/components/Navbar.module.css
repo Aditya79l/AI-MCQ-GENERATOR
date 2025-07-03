@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #151e1b;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #2c3f38;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #c6eadd;
+}

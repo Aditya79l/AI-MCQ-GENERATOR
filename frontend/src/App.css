@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-in-out;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+body {
+  background: linear-gradient(135deg, #0d1a16 0%, #1a2c26 100%);
+  min-height: 100vh;
+  font-family: "Newsreader", serif;
+  color: #e1f5f0;
+  letter-spacing: 0.01em;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #12221d;
+}
+::-webkit-scrollbar-thumb {
+  background: #22342e;
+  border-radius: 8px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: #c6eadd;
+  color: #151e1b;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: #b2d8c7;
+}
+
+/* Step Card Styles */
+.step-card {
+  background: linear-gradient(135deg, #1a2c26 60%, #22342e 100%);
+  border: 1.5px solid #35564c;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px 0 rgba(20, 40, 30, 0.18);
+  padding: 2rem 1.5rem;
+  min-width: 220px;
+  max-width: 320px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.step-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(30, 60, 50, 0.28);
+  transform: translateY(-4px) scale(1.03);
+}
+.step-card-title {
+  color: #e1f5f0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.step-card-desc {
+  color: #a2c3b8;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Force step cards to always be in a horizontal row and allow wrapping if needed */
+.steps-row {
+  display: flex;
+  flex-direction: row !important;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .max-w-3xl,
+  .max-w-md {
+    max-width: 98vw !important;
+  }
+  .p-6 {
+    padding: 1.25rem !important;
+  }
+  .steps-row {
+    flex-direction: row !important;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .step-card {
+    max-width: 98vw;
+    padding: 1.25rem 0.75rem;
+  }
+}
+
+/* CTA Section Styles */
+.cta-section {
+  text-align: center;
+  margin-top: 4rem;
+}
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #e1f5f0;
+  margin-bottom: 0.5rem;
+}
+.cta-desc {
+  color: #c4dad3;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #b2d8c7 0%, #c6eadd 100%);
+  color: #151e1b;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px 0 rgba(20, 40, 30, 0.1);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.cta-btn:hover {
+  background: linear-gradient(90deg, #a0cfc0 0%, #b2d8c7 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 32px 0 rgba(30, 60, 50, 0.18);
+}
+
+/* Modern Button Styles */
+.btn-modern {
+  display: inline-block;
+  background: linear-gradient(90deg, #b2d8c7 0%, #c6eadd 100%);
+  color: #151e1b;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.85rem;
+  padding: 0.85rem 2.2rem;
+  margin: 0 auto;
+  box-shadow: 0 2px 12px 0 rgba(20, 40, 30, 0.1);
+  transition: background 0.18s, transform 0.18s, box-shadow 0.18s, color 0.18s;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+.btn-modern:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+  z-index: 0;
+}
+.btn-modern:hover:after {
+  width: 250%;
+  height: 250%;
+}
+.btn-modern:hover {
+  background: linear-gradient(90deg, #a0cfc0 0%, #b2d8c7 100%);
+  color: #0d1a16;
+  transform: translateY(-2px) scale(1.045);
+  box-shadow: 0 8px 32px 0 rgba(30, 60, 50, 0.18);
+}
+.btn-modern:active {
+  transform: scale(0.98);
+}
+
+.btn-modern:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+/* Upload PDF and Number of Questions styling */
+.form-label {
+  color: #e1f5f0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.form-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  background: #1a2c26;
+  color: #e1f5f0;
+  border: 1.5px solid #35564c;
+  margin-bottom: 0.5rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.form-input:focus {
+  outline: none;
+  border: 1.5px solid #8fbfaf;
+  box-shadow: 0 0 0 2px #8fbfaf33;
+}
+
+input[type="file"].form-input {
+  background: #1a2c26;
+  color: #e1f5f0;
+  border: none;
+  padding: 0.75rem 0;
+}
+
+/* Modern MCQ Display Styles */
+.modern-mcqs-container {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, #1f2d28 60%, #22342e 100%);
+  border-radius: 1.5rem;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 700px;
+  overflow-y: auto;
+  box-shadow: 0 6px 32px 0 rgba(20, 40, 30, 0.18);
+  border: 1.5px solid #2f4f47;
+  animation: fade-in 0.5s;
+  margin-left: auto;
+  margin-right: auto;
+}
+.modern-mcqs-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #e1f5f0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.modern-mcqs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.modern-mcqs-card {
+  background: #22342e;
+  border-radius: 1rem;
+  padding: 1.25rem 3.5rem;
+  box-shadow: 0 2px 12px 0 rgba(20, 40, 30, 0.1);
+  border: 1.5px solid #2b4b3f;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+}
+.modern-mcqs-q {
+  color: #e1f5f0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+.modern-mcqs-opt {
+  color: #b2d8c7;
+  font-size: 1rem;
+  margin-left: 1.25rem;
+  margin-bottom: 0.1rem;
+}
+.modern-mcqs-ans {
+  color: #8fbfaf;
+  font-size: 0.98rem;
+  font-style: italic;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+}
