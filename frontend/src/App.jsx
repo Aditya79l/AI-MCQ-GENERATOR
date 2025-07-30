@@ -27,18 +27,27 @@ function App() {
     formData.append("num_mcqs", num);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/generate-mcqs/", {
+      const res = await fetch("https://quizfy.onrender.com/generate-mcqs/", {
         method: "POST",
         body: formData,
       });
-      const data = await res.json();
-      if (data.mcqs) setMcqs(data.mcqs);
-      else setError(data.error || "Unknown error occurred.");
-    } catch {
-      setError("Failed to connect to backend.");
+
+      const contentType = res.headers.get("content-type");
+      if (!res.ok) throw new Error(`HTTP error! ${res.status}`);
+
+      if (contentType && contentType.includes("application/json")) {
+        const data = await res.json();
+        if (data.mcqs) setMcqs(data.mcqs);
+        else setError(data.error || "Unknown error occurred.");
+      } else {
+        setError("Unexpected response format from server.");
+      }
+    } catch (err) {
+      setError(err.message || "Failed to connect to backend.");
     }
 
     setLoading(false);
+    setFile(null);
   };
 
   return (
@@ -58,41 +67,18 @@ function App() {
             your PDF documents quickly and efficiently.
           </p>
 
-          {/* Steps Grid */}
           <div className="steps-row">
             <StepCard
               title="Upload Your PDF"
-              desc={
-                <>
-                  <span>
-                    Choose the PDF file that contains the material you want to
-                    turn into questions.
-                  </span>
-                </>
-              }
-              className="step-card"
+              desc="Choose the PDF file that contains the material you want to turn into questions."
             />
             <StepCard
               title="Set Question Count"
-              desc={
-                <>
-                  <span>
-                    Decide how many questions you want. It’s quick and flexible.
-                  </span>
-                </>
-              }
-              className="step-card"
+              desc="Decide how many questions you want. It’s quick and flexible."
             />
             <StepCard
               title="Generate MCQs"
-              desc={
-                <>
-                  <span>
-                    Click generate and watch your questions appear in seconds!
-                  </span>
-                </>
-              }
-              className="step-card"
+              desc="Click generate and watch your questions appear in seconds!"
             />
           </div>
         </section>
@@ -124,11 +110,13 @@ function App() {
             <div>
               <label className="form-label">Upload PDF</label>
               <input
+                key={file ? file.name : "empty"}
                 type="file"
                 accept="application/pdf"
                 onChange={(e) => setFile(e.target.files[0])}
                 className="form-input"
                 required
+                disabled={loading}
               />
             </div>
 
@@ -139,9 +127,10 @@ function App() {
                 min={1}
                 max={50}
                 value={num}
-                onChange={(e) => setNum(e.target.value)}
+                onChange={(e) => setNum(Number(e.target.value))}
                 className="form-input"
                 required
+                disabled={loading}
               />
             </div>
 
@@ -158,23 +147,31 @@ function App() {
         {/* Error */}
         {error && <div className="text-red-400 mt-4 text-sm">{error}</div>}
 
-        {/* MCQ Display in One Box */}
+        {/* MCQs */}
         {mcqs && (
-          <div className="modern-mcqs-container">
+          <div className="modern-mcqs-container mt-6">
             <h2 className="modern-mcqs-title">Generated MCQs</h2>
             <div className="modern-mcqs-list">
-              <div className="modern-mcqs-card">
-                <pre
-                  style={{
-                    whiteSpace: "pre-wrap",
-                    wordBreak: "break-word",
-                    margin: 0,
-                  }}
-                >
-                  {mcqs}
-                </pre>
-              </div>
+              {mcqs.split("\n\n").map((q, i) => (
+                <div key={i} className="modern-mcqs-card mb-4">
+                  <pre
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      wordBreak: "break-word",
+                      margin: 0,
+                    }}
+                  >
+                    {q}
+                  </pre>
+                </div>
+              ))}
             </div>
+            <button
+              onClick={() => navigator.clipboard.writeText(mcqs)}
+              className="btn-modern mt-4"
+            >
+              Copy MCQs
+            </button>
           </div>
         )}
       </main>
@@ -183,8 +180,8 @@ function App() {
   );
 }
 
-const StepCard = ({ title, desc, className = "" }) => (
-  <div className={`step-card ${className}`}>
+const StepCard = ({ title, desc }) => (
+  <div className="step-card">
     <div className="step-card-title">{title}</div>
     <p className="step-card-desc">{desc}</p>
   </div>
