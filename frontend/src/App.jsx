@@ -27,7 +27,7 @@ function App() {
     formData.append("num_mcqs", num);
 
     try {
-      const res = await fetch("http://localhost:8000/generate-mcqs/", {
+      const res = await fetch("http://127.0.0.1:8000/generate-mcqs/", {
         method: "POST",
         body: formData,
       });
@@ -158,29 +158,22 @@ function App() {
         {/* Error */}
         {error && <div className="text-red-400 mt-4 text-sm">{error}</div>}
 
-        {/* Scrollable MCQ Display */}
+        {/* MCQ Display in One Box */}
         {mcqs && (
           <div className="modern-mcqs-container">
             <h2 className="modern-mcqs-title">Generated MCQs</h2>
             <div className="modern-mcqs-list">
-              {mcqs.split(/\n{2,}/).map((block, idx) => (
-                <div key={idx} className="modern-mcqs-card">
-                  {block.split("\n").map((line, i) => (
-                    <div
-                      key={i}
-                      className={
-                        line.match(/^\d+\./)
-                          ? "modern-mcqs-q"
-                          : line.match(/^[A-D]\./)
-                          ? "modern-mcqs-opt"
-                          : "modern-mcqs-ans"
-                      }
-                    >
-                      {line}
-                    </div>
-                  ))}
-                </div>
-              ))}
+              <div className="modern-mcqs-card">
+                <pre
+                  style={{
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
+                    margin: 0,
+                  }}
+                >
+                  {mcqs}
+                </pre>
+              </div>
             </div>
           </div>
         )}
